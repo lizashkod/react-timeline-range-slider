@@ -5,6 +5,11 @@
   "author": "Elizaveta Shkodkina <lizashkodkina@gmail.com>",
   "main": "dist/index.js",
   "license": "MIT",
+  "homepage": "https://github.com/lizashkod/react-time-range-slider",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lizashkod/react-time-range-slider"
+  },
   "keywords": [
     "react-component",
     "react",

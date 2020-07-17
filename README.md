@@ -1,3 +1,5 @@
+### react-timeline-range-slider
+![demo gif](./demo.gif)
 ### Installation
 
      npm i react-timeline-range-slider
@@ -15,6 +17,7 @@
 |onUpdateCallback|function|||
 |onChangeCallback|function|||
 ### Example
+[Live demo](https://codesandbox.io/s/react-timeline-range-slider-ve7w2?file=/src/App.js)
 
     import React from 'react'  
     import {addHours, endOfToday, format, startOfToday, setHours} from 'date-fns'  
