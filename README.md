@@ -1,6 +1,6 @@
 ### Installation
 
-     npm i react-time-slider
+     npm i react-timeline-range-slider
 ### Props
 
 | Prop | Type | Default | Description|

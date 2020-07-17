@@ -6,7 +6,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index.js',
-    library: 'react-time-range-slider',
+    library: 'react-timeline-range-slider',
     libraryTarget: 'commonjs2'
   },
   module: {
