@@ -7,7 +7,7 @@ const KeyboardHandle = ({ domain: [min, max], handle: { id, value, percent }, di
     aria-valuemin={min}
     aria-valuemax={max}
     aria-valuenow={value}
-    className='keyboard_handle'
+    className='react_time_range__keyboard_handle'
     style={{
       left: `${percent}%`,
       backgroundColor: disabled ? '#666' : '#ffc400'

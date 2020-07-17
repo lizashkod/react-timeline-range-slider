@@ -12,16 +12,16 @@ const Handle = ({
 
   return (
     <>
-      <div className='handle__wrapper' style={{ left: leftPosition }} {...getHandleProps(id)} />
+      <div className='react_time_range__handle_wrapper' style={{ left: leftPosition }} {...getHandleProps(id)} />
       <div
         role='slider'
         aria-valuemin={min}
         aria-valuemax={max}
         aria-valuenow={value}
-        className={`handle__container${disabled ? '__disabled' : ''}`}
+        className={`react_time_range__handle_container${disabled ? '__disabled' : ''}`}
         style={{ left: leftPosition }}
       >
-        <div className={`handle__marker${error ? '__error' : ''}`} />
+        <div className={`react_time_range__handle_marker${error ? '__error' : ''}`} />
       </div>
     </>
   )

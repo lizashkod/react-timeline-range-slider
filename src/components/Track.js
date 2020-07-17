@@ -1,10 +1,6 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-const hatched = {
-  background: 'repeating-linear-gradient( -45deg, transparent, transparent 3px, #D0D3D7 4px, #D0D3D7 2px)',
-}
-
 const getTrackConfig = ({ error, source, target, disabled }) => {
   const basicStyle = {
     left: `${source.percent}%`,
@@ -30,7 +26,7 @@ const getTrackConfig = ({ error, source, target, disabled }) => {
 
 const Track = ({ error, source, target, getTrackProps, disabled }) => (
   <div
-    className={`track${disabled ? '__disabled' : ''}`}
+    className={`react_time_range__track${disabled ? '__disabled' : ''}`}
     style={getTrackConfig({ error, source, target, disabled })}
     {...getTrackProps()}
   />

@@ -12,14 +12,17 @@ const Tick = ({ tick, count, format }) => {
   }
 
   return (
-    <div>
-      <div className={`tick__marker${isFullHour ? '__large' : ''}`} style={{ left: `${tick.percent}%` }} />
+    <>
+      <div
+        className={`react_time_range__tick_marker${isFullHour ? '__large' : ''}`}
+        style={{ left: `${tick.percent}%` }}
+      />
       {isFullHour && (
-        <div className='tick__label' style={tickLabelStyle}>
+        <div className='react_time_range__tick_label' style={tickLabelStyle}>
           {format(tick.value)}
         </div>
       )}
-    </div>
+    </>
   )
 }
 
