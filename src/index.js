@@ -161,7 +161,17 @@ class TimeRange extends React.Component {
 
           <Ticks values={this.getDateTicks()}>
             {({ ticks }) => (
-              <>{ticks.map(tick => <Tick key={tick.id} tick={tick} count={ticks.length} format={formatTick} />)}</>)}
+              <>
+                {ticks.map(tick => (
+                  <Tick
+                    key={tick.id}
+                    tick={tick}
+                    count={ticks.length}
+                    format={formatTick}
+                  />
+                ))}
+              </>
+            )}
           </Ticks>
         </Slider>
       </div>

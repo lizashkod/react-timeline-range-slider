@@ -20,19 +20,23 @@
 [Live demo](https://codesandbox.io/s/react-timeline-range-slider-ve7w2?file=/src/App.js)
 
     import React from 'react'  
-    import {addHours, endOfToday, format, startOfToday, setHours} from 'date-fns'  
-    import TimeRange from 'react-time-slider'  
+    import { endOfToday, format, set } from 'date-fns' 
+    import TimeRange from 'react-timeline-range-slider'  
       
-    const selectedStart = new Date()
-    const selectedEnd = addHours(new Date(), 4)
-      
-    const startTime = addHours(startOfToday(), 7)  
+    const now = new Date()
+    const getTodayAtSpecificHour = (hour = 12) =>
+      set(now, { hours: hour, minutes: 0, seconds: 0, milliseconds: 0 })
+    
+    const selectedStart = getTodayAtSpecificHour()
+    const selectedEnd = getTodayAtSpecificHour(14)
+    
+    const startTime = getTodayAtSpecificHour(7)
     const endTime = endOfToday()
-
-	const disabledIntervals = [  
-      { start: new Date(), end: addHours(new Date(), 2) },  
-      { start: addHours(new Date(), 7), end: addHours(new Date(), 12) },
-      { start: setHours(new Date(), 0), end: setHours(new Date(), 10) },
+    
+    const disabledIntervals = [
+      { start: getTodayAtSpecificHour(16), end: getTodayAtSpecificHour(17) },
+      { start: getTodayAtSpecificHour(7), end: getTodayAtSpecificHour(12) },
+      { start: getTodayAtSpecificHour(20), end: getTodayAtSpecificHour(24) }
     ]
       
     class App extends React.Component {  
@@ -41,7 +45,7 @@
 	    selectedInterval: [selectedStart, selectedEnd],  
       }  
       
-      onUpdateCallback = ({ error }) => this.setState({ error })  
+      errorHandler = ({ error }) => this.setState({ error })  
       
       onChangeCallback = selectedInterval => this.setState({ selectedInterval })  
       
@@ -52,7 +56,7 @@
             ticksNumber={36}  
             selectedInterval={selectedInterval}  
             timelineInterval={[startTime, endTime]}  
-            onUpdateCallback={this.onUpdateCallback}  
+            onUpdateCallback={this.errorHandler}  
             onChangeCallback={this.onChangeCallback}
             disabledIntervals={disabledIntervals}  
           />
