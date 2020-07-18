@@ -43,7 +43,7 @@ class App extends React.Component {
   state = {  
     error: false,  
     selectedInterval: [selectedStart, selectedEnd],  
-	}
+  }
 	
   errorHandler = ({ error }) => this.setState({ error })  
 
