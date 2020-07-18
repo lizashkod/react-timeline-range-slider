@@ -40,29 +40,29 @@ const disabledIntervals = [
 ]
 
 class App extends React.Component {  
-	state = {  
-		error: false,  
-		selectedInterval: [selectedStart, selectedEnd],  
-	}  
+  state = {  
+    error: false,  
+    selectedInterval: [selectedStart, selectedEnd],  
+	}
+	
+  errorHandler = ({ error }) => this.setState({ error })  
 
-	errorHandler = ({ error }) => this.setState({ error })  
-
-	onChangeCallback = selectedInterval => this.setState({ selectedInterval })  
+  onChangeCallback = selectedInterval => this.setState({ selectedInterval })  
 
 	render() {  
-		const { selectedInterval, error } = this.state  
-			return (  
-				<TimeRange
-					error={error}  
-					ticksNumber={36}  
-					selectedInterval={selectedInterval}  
-					timelineInterval={[startTime, endTime]}  
-					onUpdateCallback={this.errorHandler}  
-					onChangeCallback={this.onChangeCallback}
-					disabledIntervals={disabledIntervals}  
-				/>
-		 )  
-	}  
+    const { selectedInterval, error } = this.state  
+      return (  
+        <TimeRange
+          error={error}  
+          ticksNumber={36}  
+          selectedInterval={selectedInterval}  
+          timelineInterval={[startTime, endTime]}  
+          onUpdateCallback={this.errorHandler}  
+          onChangeCallback={this.onChangeCallback}
+          disabledIntervals={disabledIntervals}  
+        />
+      )  
+  }  
 }  
 
 export default App
