@@ -1,6 +1,6 @@
 {
   "name": "react-timeline-range-slider",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Time Slider component for React",
   "author": "Elizaveta Shkodkina <lizashkodkina@gmail.com>",
   "main": "dist/index.js",
