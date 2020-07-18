@@ -34,9 +34,9 @@ const startTime = getTodayAtSpecificHour(7)
 const endTime = endOfToday()
 
 const disabledIntervals = [
-	{ start: getTodayAtSpecificHour(16), end: getTodayAtSpecificHour(17) },
-	{ start: getTodayAtSpecificHour(7), end: getTodayAtSpecificHour(12) },
-	{ start: getTodayAtSpecificHour(20), end: getTodayAtSpecificHour(24) }
+  { start: getTodayAtSpecificHour(16), end: getTodayAtSpecificHour(17) },
+  { start: getTodayAtSpecificHour(7), end: getTodayAtSpecificHour(12) },
+  { start: getTodayAtSpecificHour(20), end: getTodayAtSpecificHour(24) }
 ]
 
 class App extends React.Component {  
