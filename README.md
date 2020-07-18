@@ -49,7 +49,7 @@ class App extends React.Component {
 
   onChangeCallback = selectedInterval => this.setState({ selectedInterval })  
 
-	render() {  
+  render() {  
     const { selectedInterval, error } = this.state  
       return (  
         <TimeRange
