@@ -48,6 +48,7 @@ class TimeRange extends React.Component {
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.disabledIntervals !== prevState.disabledIntervals)
       return { disabledIntervals: nextProps.disabledIntervals }
+    return null
   }
 
   onChange = newTime => {
