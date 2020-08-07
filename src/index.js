@@ -45,6 +45,11 @@ class TimeRange extends React.Component {
     disabledIntervals: getFormattedBlockedIntervals(this.props.disabledIntervals, this.props.timelineInterval)
   }
 
+  static getDerivedStateFromProps(nextProps) {
+    if (nextProps.disabledIntervals !== this.state.disabledIntervals)
+      this.setState({ disabledIntervals: nextProps.disabledIntervals })
+  }
+
   onChange = newTime => {
     const formattedNewTime = newTime.map(t => new Date(t))
     this.props.onChangeCallback(formattedNewTime)
