@@ -19,8 +19,8 @@ const getTimelineConfig = (timelineStart, timelineLength) => (date) => {
   return { percent, value }
 }
 
-const getFormattedBlockedIntervals = (blockedDates, [startTime, endTime]) => {
-  if (!blockedDates?.length) return null
+const getFormattedBlockedIntervals = (blockedDates = [], [startTime, endTime]) => {
+  if (!blockedDates.length) return null
 
   const timelineLength = differenceInMilliseconds(endTime, startTime)
   const getConfig = getTimelineConfig(startTime, timelineLength)
