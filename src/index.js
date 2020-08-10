@@ -41,12 +41,8 @@ const getFormattedBlockedIntervals = (blockedDates, [startTime, endTime]) => {
 }
 
 class TimeRange extends React.Component {
-  state = {
-    disabledIntervals: getFormattedBlockedIntervals(this.props.disabledIntervals, this.props.timelineInterval)
-  }
-
-  static getDerivedStateFromProps(nextProps) {
-    return ({ disabledIntervals: nextProps.disabledIntervals })
+  get disabledIntervals () {
+    return getFormattedBlockedIntervals(this.props.disabledIntervals, this.props.timelineInterval)
   }
 
   onChange = newTime => {
@@ -67,8 +63,8 @@ class TimeRange extends React.Component {
   }
 
   onUpdate = newTime => {
-    const { disabledIntervals } = this.state
     const { onUpdateCallback } = this.props
+    const disabledIntervals = this.disabledIntervals
 
     if (disabledIntervals?.length) {
       const isValuesNotValid = disabledIntervals.some(({ source, target }) =>
@@ -86,7 +82,6 @@ class TimeRange extends React.Component {
   }
 
   render() {
-    const { disabledIntervals } = this.state
     const {
       sliderRailClassName,
       timelineInterval,
@@ -96,7 +91,9 @@ class TimeRange extends React.Component {
       step,
     } = this.props
 
-    const domain = timelineInterval.map(t => +t)
+    const domain = timelineInterval.map(t => Number(t))
+
+    const disabledIntervals = this.disabledIntervals
 
     return (
       <div className={containerClassName || 'react_time_range__time_range_container' }>

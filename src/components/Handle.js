@@ -4,7 +4,7 @@ import React from 'react'
 const Handle = ({
   error,
   domain: [min, max],
-  handle: { id, value, percent },
+  handle: { id, value, percent = 0 },
   disabled,
   getHandleProps,
 }) => {
