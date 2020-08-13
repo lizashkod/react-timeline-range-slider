@@ -185,7 +185,6 @@ class TimeRange extends React.Component {
             </Tracks>
           )}
 
-          {console.log(this.now)}
           {showNow && (
             <Tracks left={false} right={false}>
               {({ getTrackProps }) => (
