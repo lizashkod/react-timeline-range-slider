@@ -1,8 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { scaleTime } from 'd3-scale'
-import {format, addHours, startOfToday, endOfToday, differenceInMilliseconds, isBefore, isAfter, set} from 'date-fns'
 import { Slider, Rail, Handles, Tracks, Ticks } from 'react-compound-slider'
+import {
+  format,
+  addHours,
+  startOfToday,
+  endOfToday,
+  differenceInMilliseconds,
+  isBefore,
+  isAfter,
+  set,
+  addMinutes,
+} from 'date-fns'
 
 import SliderRail from './components/SliderRail'
 import Track from './components/Track'
@@ -40,9 +50,23 @@ const getFormattedBlockedIntervals = (blockedDates = [], [startTime, endTime]) =
   return formattedBlockedDates
 }
 
+const getNowConfig = ([startTime, endTime])  => {
+  const timelineLength = differenceInMilliseconds(endTime, startTime)
+  const getConfig = getTimelineConfig(startTime, timelineLength)
+
+  const source = getConfig(new Date())
+  const target = getConfig(addMinutes(new Date(), 1))
+
+  return { id: 'now-track', source, target }
+}
+
 class TimeRange extends React.Component {
   get disabledIntervals () {
     return getFormattedBlockedIntervals(this.props.disabledIntervals, this.props.timelineInterval)
+  }
+
+  get now () {
+    getNowConfig(this.props.timelineInterval)
   }
 
   onChange = newTime => {
@@ -89,6 +113,7 @@ class TimeRange extends React.Component {
       containerClassName,
       error,
       step,
+      showNow,
     } = this.props
 
     const domain = timelineInterval.map(t => Number(t))
@@ -156,6 +181,19 @@ class TimeRange extends React.Component {
                     />
                   ))}
                 </>
+              )}
+            </Tracks>
+          )}
+
+          {showNow && (
+            <Tracks left={false} right={false}>
+              {({ getTrackProps }) => (
+                <Track
+                  key={this.now.id}
+                  source={this.now.source}
+                  target={this.now.target}
+                  getTrackProps={getTrackProps}
+                />
               )}
             </Tracks>
           )}
