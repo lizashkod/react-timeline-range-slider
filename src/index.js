@@ -66,7 +66,7 @@ class TimeRange extends React.Component {
   }
 
   get now () {
-    getNowConfig(this.props.timelineInterval)
+    return getNowConfig(this.props.timelineInterval)
   }
 
   onChange = newTime => {
@@ -185,13 +185,14 @@ class TimeRange extends React.Component {
             </Tracks>
           )}
 
+          {console.log(this.now)}
           {showNow && (
             <Tracks left={false} right={false}>
               {({ getTrackProps }) => (
                 <Track
-                  key={this.now.id}
-                  source={this.now.source}
-                  target={this.now.target}
+                  key={this.now?.id}
+                  source={this.now?.source}
+                  target={this.now?.target}
                   getTrackProps={getTrackProps}
                 />
               )}
