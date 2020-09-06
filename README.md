@@ -11,16 +11,18 @@
 |selectedInterval|array|[new Date(), addHours(new Date(), 1)]|Selected interval inside the timeline|
 |disabledIntervals|array|[]|Array of disabled intervals inside the timeline|
 |containerClassName|string||ClassName of the wrapping container|
-|step|number|48|Number of milliseconds between steps|
-|ticksNumber|number|1800000|Number of steps on the timeline (the default value is 30 minutes)|
+|step|number|1800000|Number of milliseconds between steps (the default value is 30 minutes)|
+|ticksNumber|number|48|Number of steps on the timeline (the default value is 30 minutes)|
 |error|bool|false|Is the selected interval is not valid|
+|mode|int/function|3|The interaction mode. Value of 1 will allow handles to cross each other. Value of 2 will keep the sliders from crossing and separated by a step. Value of 3 will make the handles pushable and keep them a step apart. ADVANCED: You can also supply a function that will be passed the current values and the incoming update. Your function should return what the state should be set as.|
+|formatTick|function|ms => format(new Date(ms), 'HH:mm')|Function that determines the format in which the date will be displayed|
 |onUpdateCallback|function|||
 |onChangeCallback|function|||
 ### Example
 [Live demo](https://codesandbox.io/s/react-timeline-range-slider-ve7w2?file=/src/App.js)
 ```javascript
 import React from 'react'  
-import { endOfToday, format, set } from 'date-fns' 
+import { endOfToday, set } from 'date-fns' 
 import TimeRange from 'react-timeline-range-slider'  
 
 const now = new Date()

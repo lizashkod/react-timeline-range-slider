@@ -21,8 +21,6 @@ import Handle from './components/Handle'
 
 import './styles/index.scss'
 
-const formatTick = ms => format(new Date(ms), 'HH:mm')
-
 const getTimelineConfig = (timelineStart, timelineLength) => (date) => {
   const percent = differenceInMilliseconds(date, timelineStart)/timelineLength * 100
   const value = Number(format(date, 'T'))
@@ -78,11 +76,13 @@ class TimeRange extends React.Component {
     const { value: startInterval } = source
     const { value: endInterval } = target
 
-    if (startInterval > start && endInterval <= end || startInterval >= start && endInterval < end) return true
+    if (startInterval > start && endInterval <= end || startInterval >= start && endInterval < end)
+      return true
     if (start >= startInterval && end <= endInterval) return true
 
     const isStartInBlockedInterval = start > startInterval && start < endInterval && end >= endInterval
     const isEndInBlockedInterval = end < endInterval && end > startInterval && start <= startInterval
+
     return isStartInBlockedInterval || isEndInBlockedInterval
   }
 
@@ -114,6 +114,8 @@ class TimeRange extends React.Component {
       error,
       step,
       showNow,
+      formatTick,
+      mode,
     } = this.props
 
     const domain = timelineInterval.map(t => Number(t))
@@ -123,7 +125,7 @@ class TimeRange extends React.Component {
     return (
       <div className={containerClassName || 'react_time_range__time_range_container' }>
         <Slider
-          mode={3}
+          mode={mode}
           step={step}
           domain={domain}
           onUpdate={this.onUpdate}
@@ -132,7 +134,8 @@ class TimeRange extends React.Component {
           rootStyle={{ position: 'relative', width: '100%' }}
         >
           <Rail>
-            {({ getRailProps }) => <SliderRail className={sliderRailClassName} getRailProps={getRailProps} />}
+            {({ getRailProps }) =>
+              <SliderRail className={sliderRailClassName} getRailProps={getRailProps} />}
           </Rail>
 
           <Handles>
@@ -226,6 +229,7 @@ TimeRange.propTypes = {
   containerClassName: PropTypes.string,
   sliderRailClassName: PropTypes.string,
   step: PropTypes.number,
+  formatTick: PropTypes.func,
 }
 
 TimeRange.defaultProps = {
@@ -234,10 +238,12 @@ TimeRange.defaultProps = {
     set(addHours(new Date(), 1), { minutes: 0, seconds: 0, milliseconds: 0 })
   ],
   timelineInterval: [startOfToday(), endOfToday()],
+  formatTick: ms => format(new Date(ms), 'HH:mm'),
   disabledIntervals: [],
   step: 1000*60*30,
   ticksNumber: 48,
   error: false,
+  mode: 3,
 }
 
 export default TimeRange
