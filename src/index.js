@@ -98,7 +98,8 @@ class TimeRange extends React.Component {
       return
     }
 
-    onUpdateCallback({ error: false })
+    const formattedNewTime = newTime.map(t => new Date(t))
+    onUpdateCallback({ error: false, time: formattedNewTime })
   }
 
   getDateTicks = () => {
