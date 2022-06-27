@@ -69,7 +69,9 @@ class TimeRange extends React.Component {
 
   onChange = newTime => {
     const formattedNewTime = newTime.map(t => new Date(t))
-    this.props.onChangeCallback(formattedNewTime)
+    if (onChangeCallback) {
+      this.props.onChangeCallback(formattedNewTime)
+    }
   }
 
   checkIsSelectedIntervalNotValid = ([start, end], source, target) => {
@@ -89,6 +91,9 @@ class TimeRange extends React.Component {
   onUpdate = newTime => {
     const { onUpdateCallback } = this.props
     const disabledIntervals = this.disabledIntervals
+    if (!onUpdateCallback) {
+      return
+    }
 
     if (disabledIntervals?.length) {
       const isValuesNotValid = disabledIntervals.some(({ source, target }) =>
