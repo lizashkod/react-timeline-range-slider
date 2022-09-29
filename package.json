@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "prop-types": "^15.7.2",
-    "d3-scale": "^3.2.3",
+    "d3-scale": "^4.0.2",
     "date-fns": "^2.19.0",
     "node-sass": "^5.0.0",
     "react-compound-slider": "^3.3.1"
