@@ -1,6 +1,6 @@
 import { getMinutes } from 'date-fns'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React from "react"
 
 const Tick = ({ tick, count, format }) => {
   const isFullHour = !getMinutes(tick.value)
