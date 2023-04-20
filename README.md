@@ -1,8 +1,6 @@
-### react-timeline-range-slider
-![demo gif](./demo.gif)
-### Installation
+## react-range-slider
+  This project is forked from react-timeline-range-slider.
 
-     npm i react-timeline-range-slider
 ### Props
 
 | Prop | Type | Default | Description|
@@ -19,53 +17,54 @@
 |onUpdateCallback|function|||
 |onChangeCallback|function|||
 ### Example
-[Live demo](https://codesandbox.io/s/react-timeline-range-slider-ve7w2?file=/src/App.js)
 ```javascript
-import React from 'react'  
-import { endOfToday, set } from 'date-fns' 
-import TimeRange from 'react-timeline-range-slider'  
+import React, { useState } from "react";
+import { endOfToday, set } from "date-fns";
+import TimeRange from "react-timeline-range-slider";
 
-const now = new Date()
+const now = new Date();
 const getTodayAtSpecificHour = (hour = 12) =>
-	set(now, { hours: hour, minutes: 0, seconds: 0, milliseconds: 0 })
+  set(now, { hours: hour, minutes: 0, seconds: 0, milliseconds: 0 });
 
-const selectedStart = getTodayAtSpecificHour()
-const selectedEnd = getTodayAtSpecificHour(14)
+const selectedStart = getTodayAtSpecificHour();
+const selectedEnd = getTodayAtSpecificHour(14);
 
-const startTime = getTodayAtSpecificHour(7)
-const endTime = endOfToday()
+const startTime = getTodayAtSpecificHour(7);
+const endTime = endOfToday();
 
 const disabledIntervals = [
   { start: getTodayAtSpecificHour(16), end: getTodayAtSpecificHour(17) },
   { start: getTodayAtSpecificHour(7), end: getTodayAtSpecificHour(12) },
-  { start: getTodayAtSpecificHour(20), end: getTodayAtSpecificHour(24) }
-]
+  { start: getTodayAtSpecificHour(20), end: getTodayAtSpecificHour(24) },
+];
 
-class App extends React.Component {  
-  state = {  
-    error: false,  
-    selectedInterval: [selectedStart, selectedEnd],  
+function App(props) {
+  const [error, setError] = useState(false);
+  const [selectedInterval, setInterval] = useState([
+    selectedStart,
+    selectedEnd,
+  ]);
+
+  function errorHandler({ error }) {
+    setError(error);
   }
-	
-  errorHandler = ({ error }) => this.setState({ error })  
 
-  onChangeCallback = selectedInterval => this.setState({ selectedInterval })  
+  function onChangeCallback(selectedInterval) {
+    setInterval(selectedInterval);
+  }
 
-  render() {  
-    const { selectedInterval, error } = this.state  
-      return (  
-        <TimeRange
-          error={error}  
-          ticksNumber={36}  
-          selectedInterval={selectedInterval}  
-          timelineInterval={[startTime, endTime]}  
-          onUpdateCallback={this.errorHandler}  
-          onChangeCallback={this.onChangeCallback}
-          disabledIntervals={disabledIntervals}  
-        />
-      )  
-  }  
-}  
+  return (
+    <TimeRange
+      error={error}
+      ticksNumber={36}
+      selectedInterval={selectedInterval}
+      timelineInterval={[startTime, endTime]}
+      onUpdateCallback={errorHandler}
+      onChangeCallback={onChangeCallback}
+      disabledIntervals={disabledIntervals}
+    />
+  );
+}
 
-export default App
+export default App;
 ```
